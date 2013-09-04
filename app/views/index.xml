@@ -1,0 +1,6 @@
+<Alloy>
+    <Window id="mainWin" class="container" title="Main Window">
+    	<Button id="btn" top="140" onClick="doClick1" title="Blue window"></Button>
+    	<Button id="btn" top="200" onClick="doClick2" title="Green window"></Button>
+    </Window>
+</Alloy>
