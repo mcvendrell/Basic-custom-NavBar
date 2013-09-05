@@ -3,8 +3,9 @@ exports.createNavigatorGroup = function() {
     var me = {};
 
     var navViews = []; // A stack of navigation bars
-    var navView;
+    var navView;  // Actual navView
 
+	// Prepare a navView for possible uses
     function pushNavBar() {
         navView = Ti.UI.createView({
             top: 0,
@@ -12,21 +13,25 @@ exports.createNavigatorGroup = function() {
             backgroundColor: '#BBB'
         });
         navViews.push(navView);
-        Ti.API.info("navViews push:" + navViews.length);
+        Ti.API.info("navViews after push: " + navViews.length);
     };
     
+	// Remove the prepared navView and clear the actual
     function popNavBar() {
-        navView = null;
         navViews.pop();
-        //navView.removeAllChildren();
         navView = navViews[navViews.length - 1];
-    	Ti.API.info("navViews pop:" + navViews.length);
-    	Ti.API.info("navView info:" + navView);
+        // Remove ALL previous objects we set in the actual window, to have it clear for the new ones.
+        navView.removeAllChildren();
+    	Ti.API.info("navViews after pop: " + navViews.length);
     };
 
     // Make sure we always have a navView available to prepare
+    // We need it because set left/right buttons is an action made BEFORE the
+    // creation of the window, so we need to set it
+	Ti.API.info("Initial navView push");
     pushNavBar();
 
+	// Open a new window, setting previously the navBar with its options
     me.open = function(win) {
     	navView.add(Ti.UI.createLabel({
             text: win.title,
@@ -37,43 +42,60 @@ exports.createNavigatorGroup = function() {
 		// For second or more views, add a back button
         if (navViews.length >= 2) {
             var button = Ti.UI.createButton({
-                //title: '< ' + navViews[navViews.length - 2].win.title
+				// Do you want to simulate iOS nav back button behavior, having the name of the
+				// previous window? Uncomment this line (and comment the next)
+                //title: '< ' + navViews[navViews.length - 2].winTitle
                 title: '<<'
             });
             me.setLeftButton(win, button);
             
             button.addEventListener('click', function() {
-                popNavBar();
-                win.close();
+                me.close(win);
             });
         }
 
-        Ti.API.info("navViews:" + navViews.length);
-    	Ti.API.info("navView info:" + navView);
-
+		// You can remove this block, its for testing purpose only
+        Ti.API.info("===============================================");
+        Ti.API.info("Open -> total navViews after opening: " + navViews.length);
+        var total = navView.children.length;
+    	Ti.API.info("Open -> navView info: " + total);
+    	for (var i = 0; i < total; i++) {
+			Ti.API.info("Open -> navView in:" + navView.children[i]);
+		}
+		
+		// Save the actual title to immitate iOS behavior
+		navView.winTitle = win.title;
         win.add(navView);
 
-        Ti.API.info("navView same?: " + (navViews[0] === navViews[1]));
-        if (navViews.length >= 2) {
-        	Ti.API.info("navView same 1.2?: " + (navViews[1] === navViews[2]));
-        }            	
+		// Comment to have a lightweight Android window (no new Android activity in this case)
+		// If you leave this uncommented, you must control manually the Android physical button
+		// or it will close directly the window, instead going back
         win.navBarHidden = true;
+        
         win.open();
 
-		// Prepare for the next window
+		// Prepare a new navView for the next possible window
         pushNavBar();
     };
 
+	// Close the actual window
     me.close = function(win) {
         if (navViews.length > 1) {
-            // Close the window on this nav
-            //win.remove(navView);
+        	// Remove the prepared navView and clear the actual
             popNavBar();
+            // Close the window on this nav
             win.close();
+            
+			// You can remove this block, its for testing purpose only
+	        var total = navView.children.length;
+	    	Ti.API.info("Close -> navView info after close: " + total);
+	    	for (var i = 0; i < total; i++) {
+				Ti.API.info("Close -> navView in:" + navView.children[i]);
+			}
         }
     };
 
-	// Helper to add a left button
+	// To add a left button
     me.setLeftButton = function(win, button) {
     	if (button.width <= 30 && button.height <= 30) {
     		// Smaller special button, like info button
@@ -81,12 +103,13 @@ exports.createNavigatorGroup = function() {
             button.left = 8;
             button.font = {	fontFamily: "monospace", fontSize: 14 };
     	} else {
-	            button.top = 5;
-	            button.left = 5;
+            button.top = 5;
+            button.left = 5;
         }
         navView.add(button);
     };
  
+	// To add a right button
     me.setRightButton = function(win, button) {
         button.top = 5;
         button.right = 5;
