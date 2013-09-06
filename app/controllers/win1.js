@@ -1,7 +1,7 @@
 // Add a the delete button
 var btn = Ti.UI.createButton({
 	id: "btn",
-	title: "btn"
+	title: "Close"
 });
 Alloy.Globals.navBar.setRightButton($.win1, btn);
 
