@@ -1,12 +1,7 @@
 Welcome to Appcelerator Titanium Mobile Project
 
-<<<<<<< HEAD:README.md
 This project is to test a custom navigation bar to imitate iOS behavior NavGroup in Android devices.
 It works as native in iOS and imitation in Android.
-=======
-This project is to test a custom navigation bar to immitate iOS behavior NavGroup in Android devices.
-It works as native in iOS and immitation in Android.
->>>>>>> db346010820d7981a31de0650e98f75c58b36d37:README
 
 You can find screenshots in the screenshots folder.
 
