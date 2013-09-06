@@ -5,8 +5,10 @@ It works as native in iOS and imitation in Android.
 
 You can find screenshots in the screenshots folder.
 
-![Android navBar](https://github.com/mcvendrell/Basic-custom-NavBar/blob/master/screenshots/AndroidScreen1.png)
-![iOS navBar](https://github.com/mcvendrell/Basic-custom-NavBar/blob/master/screenshots/iPhoneScreen1.png)
+![iOS navBar](https://raw.github.com/mcvendrell/Basic-custom-NavBar/master/screenshots/iPhoneScreen1.png)
+![iOS navBar win2](https://raw.github.com/mcvendrell/Basic-custom-NavBar/master/screenshots/iPhoneScreen2.png)
+![Android navBar](https://raw.github.com/mcvendrell/Basic-custom-NavBar/master/screenshots/AndroidScreen1.png)
+![Android navBar win2](https://raw.github.com/mcvendrell/Basic-custom-NavBar/master/screenshots/AndroidScreen2.png)
 
 This example was done under Alloy framework.
 
