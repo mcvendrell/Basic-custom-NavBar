@@ -60,6 +60,14 @@ exports.createNavigatorGroup = function() {
 	    	Ti.API.info("navViews after pop: " + navViews.length);
 	    };
 	
+		// Event to close by code the window. 
+		// We need to do this way so we can remove the event on window close
+		function closeWindowByBackButton(e) {
+	        Ti.API.info("===============================================");
+	        Ti.API.info("Closing by back button on: " + e.source.title);
+			me.close(e.source);
+		}
+
 	    // Make sure we always have a navView available to prepare
 	    // We need it because set left/right buttons is an action made BEFORE the
 	    // creation of the window, so we need to set it
@@ -87,6 +95,15 @@ exports.createNavigatorGroup = function() {
 	            button.addEventListener('click', function() {
 	                me.close(win);
 	            });
+	            
+		        // ====================================================
+				// Add detection of physical back button for Android
+				// We need to close manually the window to avoid the back button
+				// to close all the program (because our controller is creating all
+				// the new windows without especifying win.navBarHidden, in order to allow
+				// the Android Activity to work properly)
+				// NOTE: manually detecting the back button press overrides its behavior, so nothing happens
+				win.addEventListener('android:back', closeWindowByBackButton);
 	        }
 	
 			// You can remove this block, its for testing purpose only
@@ -103,10 +120,19 @@ exports.createNavigatorGroup = function() {
 	        win.add(navView);
 	
 			// Comment to have a lightweight Android window (no new Android activity in this case)
-			// If you leave this uncommented, you must control manually the Android physical button
-			// or it will close directly the window, instead going back
-	        win.navBarHidden = true;
+			// If you leave this commented, you must control manually the Android physical button
+			// or it will close directly the window, instead going back (see line 103)
+	        //win.navBarHidden = true;
 	        
+	        // ====================================================
+			// Because the detection of physical back button for Android
+			// we need to remove the back detection when closing the window, or a bug
+			// will make that the last back event detection will be still active in the main window
+			// of the app, producing a non desired behavior
+			win.addEventListener('close', function(e) {
+				win.removeEventListener('android:back', closeWindowByBackButton);
+			});
+			
 	        win.open();
 	
 			// Prepare a new navView for the next possible window

@@ -1,5 +1,5 @@
 <Alloy>
-    <Window id="mainWin" class="container" exitOnClose="true">
+    <Window id="mainWin" class="container">
     	<Button id="btn" top="140" onClick="doClick1" title="Blue window"></Button>
     	<Button id="btn" top="200" onClick="doClick2" title="Green window"></Button>
     </Window>

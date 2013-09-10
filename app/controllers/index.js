@@ -3,6 +3,17 @@ var nav = ui.createNavigatorGroup();
 
 Alloy.Globals.navBar = nav;
 
+function OnAppResume()
+{
+  Ti.API.info('***---> OnAppResume');
+}
+ 
+function OnAppPause()
+{
+  Ti.API.info('***---> OnAppPause');
+}
+ 
+
 function doClick1(e) {
 	// Get first window
 	var win1 = Alloy.createController('win1').getView();
@@ -17,3 +28,6 @@ function doClick2(e) {
 
 $.mainWin.title = "Test";
 nav.open($.mainWin);
+
+Ti.Android.currentActivity.addEventListener('resume', OnAppResume);
+Ti.Android.currentActivity.addEventListener('pause', OnAppPause);
