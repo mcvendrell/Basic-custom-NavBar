@@ -3,6 +3,8 @@ Welcome to Appcelerator Titanium Mobile Project
 This project is to test a custom navigation bar to imitate iOS behavior NavGroup in Android devices.
 It works as native in iOS and imitation in Android.
 
+In the "backButton" branch you will find a way to control the physical Android back button to avoid app to close, while controlling the PAUSE/RESUME activity events.
+
 You can find screenshots in the screenshots folder.
 
 ![iOS navBar](https://raw.github.com/mcvendrell/Basic-custom-NavBar/master/screenshots/iPhoneScreen1.png)
