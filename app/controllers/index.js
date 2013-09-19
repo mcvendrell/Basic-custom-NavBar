@@ -29,5 +29,7 @@ function doClick2(e) {
 $.mainWin.title = "Test";
 nav.open($.mainWin);
 
-Ti.Android.currentActivity.addEventListener('resume', OnAppResume);
-Ti.Android.currentActivity.addEventListener('pause', OnAppPause);
+if (OS_ANDROID) {
+	Ti.Android.currentActivity.addEventListener('resume', OnAppResume);
+	Ti.Android.currentActivity.addEventListener('pause', OnAppPause);
+}
