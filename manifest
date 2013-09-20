@@ -1,9 +1,9 @@
-#appname: basic
-#appid: com.mcv.basic
-#type: mobile
-#guid: cf1f9429-eba4-49e4-a9e8-aa4d613f1919
-#version: 1.0
-#publisher: not specified
-#url: not specified
-#image: appicon.png
-#desc: not specified
+#appname:basic
+#appid:com.mcv.basic
+#type:mobile
+#guid:cf1f9429-eba4-49e4-a9e8-aa4d613f1919
+#version:1.0
+#publisher:manu
+#url:http://
+#image:appicon.png
+#desc:not specified

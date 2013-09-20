@@ -1,30 +1,20 @@
-exports.createNavigatorGroup = function() {
+exports.createNavigatorGroup = function(mainWindow) {
 
     var me = {};
 
     if (OS_IOS) {   
         // Create the navigator, create a window for the navigator and add the navigator to the window.
-        var navGroup = Titanium.UI.iPhone.createNavigationGroup();  
-        var winNav = Titanium.UI.createWindow();
-        winNav.add(navGroup);
+        var navGroup = Titanium.UI.iOS.createNavigationWindow({window: mainWindow});
+        navGroup.open();
 
 		// Open the window inside the navGroup
         me.open = function(win) {
-            if (!navGroup.window) {
-                // First time call, add the window to the navigator and open the navigator window
-                navGroup.window = win;
-                winNav.open();
-            } else {
-                // All other calls, open the window through the navigator
-                navGroup.open(win);
-            }
+            navGroup.openWindow(win);
         };
 
         // Close the window on this nav
         me.close = function(win) {
-            if (navGroup.window) {
-                navGroup.close(win);
-            }
+            navGroup.closeWindow(win);
         };
 
 		// Add a left button

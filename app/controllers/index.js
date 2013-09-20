@@ -1,5 +1,5 @@
 var ui = require('nav');
-var nav = ui.createNavigatorGroup();
+var nav = ui.createNavigatorGroup($.mainWin);
 
 Alloy.Globals.navBar = nav;
 
@@ -16,4 +16,7 @@ function doClick2(e) {
 };
 
 $.mainWin.title = "Test";
-nav.open($.mainWin);
+// Open the navBar, for Android only (on iOS7 is opened in the creation of nav)
+if (OS_ANDROID) {
+	nav.open($.mainWin);
+}
