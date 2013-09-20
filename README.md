@@ -10,8 +10,8 @@ You can find screenshots in the screenshots folder (also for iOS7 branch).
 
 ![iOS navBar](https://raw.github.com/mcvendrell/Basic-custom-NavBar/master/screenshots/iPhoneScreen1.png)
 ![iOS navBar win2](https://raw.github.com/mcvendrell/Basic-custom-NavBar/master/screenshots/iPhoneScreen2.png)
-![iOS7 navBar](https://raw.github.com/mcvendrell/Basic-custom-NavBar/master/screenshots/iOS7Screen1.png)
-![iOS7 navBar win2](https://raw.github.com/mcvendrell/Basic-custom-NavBar/master/screenshots/iOS7Screen2.png)
+![iOS7 navBar](https://raw.github.com/mcvendrell/Basic-custom-NavBar/iOS7/screenshots/iOS7Screen1.png)
+![iOS7 navBar win2](https://raw.github.com/mcvendrell/Basic-custom-NavBar/iOS7/screenshots/iOS7Screen2.png)
 ![Android navBar](https://raw.github.com/mcvendrell/Basic-custom-NavBar/master/screenshots/AndroidScreen1.png)
 ![Android navBar win2](https://raw.github.com/mcvendrell/Basic-custom-NavBar/master/screenshots/AndroidScreen2.png)
 
